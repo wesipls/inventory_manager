@@ -2,8 +2,7 @@
 
 <template>
 	<div id="main">
-		<button v-on:click="getInventorylist">Show all entries</button>
-		<button>Search</button>
+		<input type="text"  class="searchbox" placeholder="Search Inventory" v-model="query" @keyup="fetchData()" />
 		<div id="wrap">
 			<span style="margin-left:20px;">ID</span>
 			<span style="margin-left:70px;">Name</span>
@@ -34,16 +33,19 @@ import axios from 'axios';
 		data() {
 			return {
 				inventorylist: []
-		};
-	},
-	methods: {
-		getInventorylist() {
-			axios
-				.get("http://localhost:8000")
-				.then(response => (this.inventorylist = response.data));
-				}
-			}
-		};
+			};
+		},
+		methods: {
+			getInventorylist() {
+				axios
+					.get("http://localhost:8000")
+					.then(response => (this.inventorylist = response.data));
+					}
+				},
+		beforeMount() {
+			this.getInventorylist()
+		}
+	};
 </script>
 <style scoped>
 	#main {
