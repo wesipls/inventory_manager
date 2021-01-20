@@ -27,27 +27,48 @@ cors();
 //NOTE: FIX ABOVE CODE
 
 //define DB variables
-$servername = "localhost";
+$servername = "127.0.0.1";
 $username = "invisman";
 $password = "P4ssW0rd";
 $dbname = "Inventory";
 
 //Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname) or die("Error " .mysqli_error($conn));
+$connect = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
 //fetch data
-$sql = "SELECT * FROM laptops";
-$result = mysqli_query($conn, $sql) or die("Error in SELECT " . mysqli_error($conn));
+$received_data = json_decode(file_get_contents("php://input"));
 
 //Create array for result
-$arr = array();
-while($row = mysqli_fetch_assoc($result))
-{
-	$arr[] = $row;
-}
-//Echo json array
-echo json_encode($arr);
 
-//Close db connection
-mysqli_close($conn);
+$data = array();
+
+if($received_data->query != '')
+{
+	$query = "
+	SELECT * FROM laptops 
+	WHERE laptop_manufacturer LIKE '%".$received_data->query."%' 
+	OR laptop_name LIKE '%".$received_data->query."%' 
+	ORDER BY laptop_id DESC
+	";
+}
+else
+{
+	$query = "
+	SELECT * FROM laptops
+	ORDER BY laptop_id DESC
+	";
+}
+
+$statement = $connect->prepare($query);
+
+$statement->execute();
+
+while($row = $statement->fetch(PDO::FETCH_ASSOC))
+{
+	$data[] = $row;
+}
+
+//Echo json array
+echo json_encode($data);
+$connect = null;
 ?> 
