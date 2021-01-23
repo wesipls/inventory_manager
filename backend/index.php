@@ -46,8 +46,15 @@ if($received_data->query != '')
 {
 	$query = "
 	SELECT * FROM laptops 
-	WHERE laptop_manufacturer LIKE '%".$received_data->query."%' 
-	OR laptop_name LIKE '%".$received_data->query."%' 
+	WHERE laptop_id LIKE '%".$received_data->query."%' 
+	OR laptop_location LIKE '%".$received_data->query."%'
+	OR laptop_name LIKE '%".$received_data->query."%'
+	OR laptop_model LIKE '%".$received_data->query."%'
+	OR laptop_manufacturer LIKE '%".$received_data->query."%'
+	OR laptop_price LIKE '%".$received_data->query."%'
+	OR laptop_purchase_date LIKE '%".$received_data->query."%'
+	OR laptop_warranty_date LIKE '%".$received_data->query."%'
+        OR laptop_info LIKE '%".$received_data->query."%'
 	ORDER BY laptop_id DESC
 	";
 }
