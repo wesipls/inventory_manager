@@ -2,7 +2,7 @@
 
 <template>
 	<div id="main">
-		<input type="text"  class="searchbox" placeholder="Search Inventory" v-model="query" @keyup="fetchData()" />
+		<input type="text"  class="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
 		<div id="wrap">
 			<span style="margin-left:20px;">ID</span>
 			<span style="margin-left:70px;">Name</span>
@@ -32,20 +32,33 @@ import axios from 'axios';
 		name: 'invlist',
 		data() {
 			return {
-				inventorylist: []
+				inventorylist: [],
+				query:'',
+				nodata:false,
 			};
 		},
 		methods: {
 			getInventorylist() {
-				axios
-					.get("http://localhost:8000")
-					.then(response => (this.inventorylist = response.data));
+				axios.post("http://localhost:8000" , {
+					query:this.query
+				}).then((response) => {
+					if(response.data.length > 0)
+					{
+						this.inventorylist = response.data;
+						this.nodata = false;
 					}
-				},
-		beforeMount() {
+					else
+					{
+						this.inventorylist = '';
+						this.nodata = true;
+					}
+					}
+					)}
+			},
+			beforeMount() {
 			this.getInventorylist()
 		}
-	};
+		}
 </script>
 <style scoped>
 	#main {

@@ -36,7 +36,7 @@ $dbname = "Inventory";
 $connect = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
 //fetch data
-$received_data = json_decode(file_get_contents("php://input"));
+$received_data = json_decode(file_get_contents("php://input") ?? $_POST);
 
 //Create array for result
 
