@@ -5,15 +5,15 @@
 		<input type="text"  id="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
 		<div id="wrap">
 			<span style="margin-left:20px;">ID</span>
-			<span style="margin-left: 70px;">Location</span>
-			<span style="margin-left:100px;">Name</span>
+			<span style="margin-left: 65px;">Location</span>
+			<span style="margin-left:90px;">Name</span>
 			<span style="margin-left: 110px;">Model</span>
-			<span style="margin-left:85px;">Manufacturer</span>
+			<span style="margin-left:80px;">Manufacturer</span>
 			<span style="margin-left:45px;">Purchase price</span>
-			<span style="margin-left:50px;">Purchase date</span>
-			<span style="margin-left:50px;">Warranty date</span>
+			<span style="margin-left:40px;">Purchase date</span>
+			<span style="margin-left:45px;">Warranty date</span>
 			<span style="margin-left:185px;">Addition info</span>
-			<span style="margin-left: 148px;">Status</span>
+			<span style="margin-left: 180px;">Status</span>
 			<table>
 				<tr v-for="data in inventorylist" :key=data.id>
 					<td style="width: 50px;">{{ data.laptop_id }}</td>
@@ -73,6 +73,8 @@ import axios from 'axios';
 		}
 	#searchbox {
 		width: 800px;
+		margin-top: 50px;
+		margin-bottom: 50px;
 	}
 	span {
 		float: left;	
@@ -117,7 +119,7 @@ import axios from 'axios';
 		background-color: #CAF0F8;
 	}
 	tr:nth-child(even) {
-		background-color: #ADE8F4;
+		background-color: white;
 	}
 	.default {
 		width: 150px;
