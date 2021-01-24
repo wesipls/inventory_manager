@@ -31,7 +31,7 @@ export default {
 		font-family: 'Chakra Petch', sans-serif;
 	}
 	#maincontainer {
-		width: 1200px;
+		width: 1600px;
 		margin: 0 auto;
 	}
 </style>

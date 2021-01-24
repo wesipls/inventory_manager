@@ -2,24 +2,30 @@
 
 <template>
 	<div id="main">
-		<input type="text"  class="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
+		<input type="text"  id="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
 		<div id="wrap">
 			<span style="margin-left:20px;">ID</span>
-			<span style="margin-left:70px;">Name</span>
+			<span style="margin-left: 70px;">Location</span>
+			<span style="margin-left:100px;">Name</span>
+			<span style="margin-left: 110px;">Model</span>
 			<span style="margin-left:85px;">Manufacturer</span>
 			<span style="margin-left:45px;">Purchase price</span>
-			<span style="margin-left:45px;">Purchase date</span>
-			<span style="margin-left:45px;">Warranty date</span>
-			<span style="margin-left:175px;">Addition info</span>
+			<span style="margin-left:50px;">Purchase date</span>
+			<span style="margin-left:50px;">Warranty date</span>
+			<span style="margin-left:185px;">Addition info</span>
+			<span style="margin-left: 148px;">Status</span>
 			<table>
 				<tr v-for="data in inventorylist" :key=data.id>
 					<td style="width: 50px;">{{ data.laptop_id }}</td>
+					<td class="default">{{ data.laptop_location }}</td>
 					<td class="default">{{ data.laptop_name }}</td>
+					<td class="default">{{ data.laptop_model }}</td>
 					<td class="default">{{ data.laptop_manufacturer }}</td>
 					<td class="default">{{ data.laptop_price }}</td>
-					<td class="default">{{ data.purchase_date }}</td>
-					<td class="default">{{ data.warranty_date }}</td>
-					<td style="width: 400px;">{{ data.info }}</td>
+					<td class="default">{{ data.laptop_purchase_date }}</td>
+					<td class="default">{{ data.laptop_warranty_date }}</td>
+					<td style="width:462px;">{{ data.laptop_info }}</td>
+					<td style="width: 80px;">{{ data.laptop_status }}</td>
 				</tr>
 			</table>
 		</div>
@@ -65,9 +71,8 @@ import axios from 'axios';
 		padding-top: 80px;
 		text-align: center;
 		}
-	button {
-		width: 150px;
-		margin: 20px;
+	#searchbox {
+		width: 800px;
 	}
 	span {
 		float: left;	
@@ -75,9 +80,38 @@ import axios from 'axios';
 	#wrap {
 		background-color: #48CAE4;
 		float: left;
-		width: 1200px;
+		width: 1600px;
 	}
-	td {
+	table {
+	table-layout: fixed;
+	}
+	td:nth-child(2) {
+		max-width: 150px;
+		overflow: hidden;
+	}
+	td:nth-child(3) {
+		max-width: 150px;
+		overflow: hidden;
+	}
+	td:nth-child(4) {
+		max-width: 150px;
+		overflow: hidden;
+	}
+	td:nth-child(5) {
+		max-width: 150px;
+		overflow: hidden;
+	}
+	td:nth-child(6) {
+		max-width: 150px;
+		overflow: hidden;
+	}
+	td:nth-child(7) {
+		max-width: 150px;
+		overflow: hidden;
+	}
+	td:nth-child(8) {
+		max-width: 150px;
+		overflow: hidden;
 	}
 	tr:nth-child(odd) {
 		background-color: #CAF0F8;
@@ -87,5 +121,6 @@ import axios from 'axios';
 	}
 	.default {
 		width: 150px;
+		overflow: scroll;
 	}
 </style>

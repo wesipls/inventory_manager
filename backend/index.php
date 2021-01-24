@@ -54,7 +54,8 @@ if($received_data->query != '')
 	OR laptop_price LIKE '%".$received_data->query."%'
 	OR laptop_purchase_date LIKE '%".$received_data->query."%'
 	OR laptop_warranty_date LIKE '%".$received_data->query."%'
-        OR laptop_info LIKE '%".$received_data->query."%'
+	OR laptop_info LIKE '%".$received_data->query."%'
+	OR laptop_status LIKE '%".$received_data->query."%'
 	ORDER BY laptop_id DESC
 	";
 }
