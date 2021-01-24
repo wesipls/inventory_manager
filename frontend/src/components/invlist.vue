@@ -2,18 +2,23 @@
 
 <template>
 	<div id="main">
-		<input type="text"  id="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
+		<div id="topbar">
+			<input type="text"  id="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
+			<h4 id="counter">There are a total of {{ inventorylist.length }} devices found with current keyword</h4>
+			<div id="topspanner">
+				<span style="margin-left:20px;">ID</span>
+				<span style="margin-left: 65px;">Location</span>
+				<span style="margin-left:90px;">Name</span>
+				<span style="margin-left: 110px;">Model</span>
+				<span style="margin-left:80px;">Manufacturer</span>
+				<span style="margin-left:45px;">Purchase price</span>
+				<span style="margin-left:40px;">Purchase date</span>
+				<span style="margin-left:45px;">Warranty date</span>
+				<span style="margin-left:185px;">Addition info</span>
+				<span style="margin-left: 180px;">Status</span>
+			</div>
+		</div>
 		<div id="wrap">
-			<span style="margin-left:20px;">ID</span>
-			<span style="margin-left: 65px;">Location</span>
-			<span style="margin-left:90px;">Name</span>
-			<span style="margin-left: 110px;">Model</span>
-			<span style="margin-left:80px;">Manufacturer</span>
-			<span style="margin-left:45px;">Purchase price</span>
-			<span style="margin-left:40px;">Purchase date</span>
-			<span style="margin-left:45px;">Warranty date</span>
-			<span style="margin-left:185px;">Addition info</span>
-			<span style="margin-left: 180px;">Status</span>
 			<table>
 				<tr v-for="data in inventorylist" :key=data.id>
 					<td style="width: 50px;">{{ data.laptop_id }}</td>
@@ -29,6 +34,7 @@
 				</tr>
 			</table>
 		</div>
+			
 	</div>
 </template>
 
@@ -68,21 +74,25 @@ import axios from 'axios';
 </script>
 <style scoped>
 	#main {
-		padding-top: 80px;
 		text-align: center;
 		}
+	#topbar {
+		position: fixed;
+		background-color: #CAF0F8;;
+	}
 	#searchbox {
 		width: 800px;
-		margin-top: 50px;
-		margin-bottom: 50px;
 	}
-	span {
-		float: left;	
+	#topspanner {
+		float: left;
+		background-color: #48CAE4;
+		padding-right: 20px;
 	}
 	#wrap {
 		background-color: #48CAE4;
 		float: left;
 		width: 1600px;
+		margin-top: 115px;
 	}
 	table {
 	table-layout: fixed;
