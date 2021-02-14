@@ -1,37 +1,41 @@
 version: '3'
 
 services:
-        database:
-                container_name: database
-                image: 'docker.io/bitnami/mariadb:10.2-debian-10'
+        db:
+                container_name: db
+                image: 'mariadb'
 #REMEMBER TO SET PASSWORDS AND USER
                 environment:
-                        - MARIADB_USER=my_user
-                        - MARIADB_DATABASE=my_database
-                        - MARIADB_PASSWORD=my_password
+                        - DB_USER=invisman
+                        - DB_DATABASE=Inventory
+                        - DB_PASSWORD=P4ssW0rd
 
                 volumes:
                         - ./db:/var/lib/mysql
-
                 command: tail -F /dev/null
         
         backend:
-                tty: true
                 container_name: backend
-                image: 'docker.io/bitnami/laravel:7-debian-10'
-#REMEMBER TO SET PASSWORD AND USER
-                environment:
-                        - DB_HOST=database 
-                        - DB_USERNAME=my_user
-                        - DB_DATABASE=my_database
-                        - DB_PASSWORD=my_password
+                build:
+                        context: ./backend/
+                        dockerfile: Dockerfile
                 depends_on:
-                        - database
-                ports:
-                        - 3000:3000
+                        - db
+                links:
+                        - db
+                environment:
+                        - DB_HOST=db:3306
+                        - DB_TYPE=mysql
+                        - DB_USERNAME=invisman
+                        - DB_DATABASE=Inventory
+                        - DB_PASSWORD=P4ssW0rd
                 volumes:
-                        - ./backend:/app
-                command: tail -F /dev/null
+                        - ./backend/:/var/www/html/
+
+                ports:
+                        - "8100:80"
+                stdin_open: true
+                tty: true
         
         frontend:
                 container_name: frontend

@@ -27,7 +27,7 @@ cors();
 //NOTE: FIX ABOVE CODE
 
 //define DB variables
-$servername = "127.0.0.1";
+$servername = 'db';
 $username = "invisman";
 $password = "P4ssW0rd";
 $dbname = "Inventory";
