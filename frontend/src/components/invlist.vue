@@ -21,16 +21,16 @@
 		<div id="wrap">
 			<table>
 				<tr v-for="data in inventorylist" :key=data.id>
-					<td style="width: 50px;">{{ data.laptop_id }}</td>
-					<td class="default">{{ data.laptop_location }}</td>
-					<td class="default">{{ data.laptop_name }}</td>
-					<td class="default">{{ data.laptop_model }}</td>
-					<td class="default">{{ data.laptop_manufacturer }}</td>
-					<td class="default">{{ data.laptop_price }}</td>
-					<td class="default">{{ data.laptop_purchase_date }}</td>
-					<td class="default">{{ data.laptop_warranty_date }}</td>
-					<td style="width:462px;">{{ data.laptop_info }}</td>
-					<td style="width: 80px;">{{ data.laptop_status }}</td>
+					<td style="width: 50px;">{{ data.device_id }}</td>
+					<td class="default">{{ data.device_location }}</td>
+					<td class="default">{{ data.device_name }}</td>
+					<td class="default">{{ data.device_model }}</td>
+					<td class="default">{{ data.device_manufacturer }}</td>
+					<td class="default">{{ data.device_price }}</td>
+					<td class="default">{{ data.device_purchase_date }}</td>
+					<td class="default">{{ data.device_warranty_date }}</td>
+					<td style="width:462px;">{{ data.device_info }}</td>
+					<td style="width: 80px;">{{ data.device_status }}</td>
 				</tr>
 			</table>
 		</div>
@@ -51,7 +51,7 @@ import axios from 'axios';
 		},
 		methods: {
 			getInventorylist() {
-				axios.post("http://localhost:8000" , {
+				axios.post("http://localhost:8100" , {
 					query:this.query
 				}).then((response) => {
 					if(response.data.length > 0)

@@ -45,25 +45,25 @@ $data = array();
 if($received_data->query != '')
 {
 	$query = "
-	SELECT * FROM laptops 
-	WHERE laptop_id LIKE '%".$received_data->query."%' 
-	OR laptop_location LIKE '%".$received_data->query."%'
-	OR laptop_name LIKE '%".$received_data->query."%'
-	OR laptop_model LIKE '%".$received_data->query."%'
-	OR laptop_manufacturer LIKE '%".$received_data->query."%'
-	OR laptop_price LIKE '%".$received_data->query."%'
-	OR laptop_purchase_date LIKE '%".$received_data->query."%'
-	OR laptop_warranty_date LIKE '%".$received_data->query."%'
-	OR laptop_info LIKE '%".$received_data->query."%'
-	OR laptop_status LIKE '%".$received_data->query."%'
-	ORDER BY laptop_id DESC
+	SELECT * FROM devices 
+	WHERE device_id LIKE '%".$received_data->query."%' 
+	OR device_location LIKE '%".$received_data->query."%'
+	OR device_name LIKE '%".$received_data->query."%'
+	OR device_model LIKE '%".$received_data->query."%'
+	OR device_manufacturer LIKE '%".$received_data->query."%'
+	OR device_price LIKE '%".$received_data->query."%'
+	OR device_purchase_date LIKE '%".$received_data->query."%'
+	OR device_warranty_date LIKE '%".$received_data->query."%'
+	OR device_info LIKE '%".$received_data->query."%'
+	OR device_status LIKE '%".$received_data->query."%'
+	ORDER BY device_id DESC
 	";
 }
 else
 {
 	$query = "
-	SELECT * FROM laptops
-	ORDER BY laptop_id DESC
+	SELECT * FROM devices
+	ORDER BY device_id DESC
 	";
 }
 
@@ -79,4 +79,4 @@ while($row = $statement->fetch(PDO::FETCH_ASSOC))
 //Echo json array
 echo json_encode($data);
 $connect = null;
-?> 
+?>
