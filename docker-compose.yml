@@ -3,17 +3,16 @@ version: '3'
 services:
         db:
                 container_name: db
-                image: 'mariadb'
+                image: 'mariadb:10'
 #REMEMBER TO SET PASSWORDS AND USER
                 environment:
-                        - DB_USER=invisman
-                        - DB_DATABASE=Inventory
-                        - DB_PASSWORD=P4ssW0rd
+                        - MYSQL_ROOT_PASSWORD=SuperSecretAdminPassword
+                        - MYSQL_USER=invisman
+                        - MYSQL_DATABASE=Inventory
+                        - MYSQL_PASSWORD=P4ssW0rd
 
                 volumes:
                         - ./db:/var/lib/mysql
-                command: tail -F /dev/null
-        
         backend:
                 container_name: backend
                 build:
