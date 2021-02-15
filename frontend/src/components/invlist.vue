@@ -51,7 +51,7 @@ import axios from 'axios';
 		},
 		methods: {
 			getInventorylist() {
-				axios.post("http://localhost:8100" , {
+				axios.post("http://localhost:8100/read" , {
 					query:this.query
 				}).then((response) => {
 					if(response.data.length > 0)
