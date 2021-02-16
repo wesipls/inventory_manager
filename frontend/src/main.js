@@ -7,17 +7,14 @@ Vue.config.productionTip = false
 Vue.use(VueRouter);
 
 import Dashboard from './views/dashboard.vue';
-import Read from './components/invlist.vue';
-import Write from './components/newentry.vue';
+import Manager from './views/invmanager.vue';
 
 const router = new VueRouter({
 	mode: 'history',
 	base: __dirname,
 	routes: [
 		{ path: '/', component: Dashboard },
-		{ path: '/read', component: Read },
-		{ path: '/write', component: Write },
-
+		{ path: '/inventory', component: Manager },
 	]
 });
 
