@@ -17,6 +17,7 @@
 </script>
 <style scoped>
 #main {
-	z-index: 2;
+	position: relative;
+	width: 100%;
 }
 </style>

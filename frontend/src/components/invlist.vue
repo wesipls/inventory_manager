@@ -96,6 +96,10 @@ import axios from 'axios';
 	#wrap {
 		background-color: #48CAE4;
 		width: 100%;
+		padding-top: 110px;
+	}
+	table {
+		width: 100%;
 	}
 	td:nth-child(n+2):nth-child(-n+8) {
 		width: 150px;
