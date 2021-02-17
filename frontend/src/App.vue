@@ -35,7 +35,7 @@ export default {
 	background-color: #03045E;
 	top: 0;
 	left: 0;
-	width: 200px;
+	width: 180px;
 	z-index: 1;
 	position: fixed;
 	overflow: hidden;
@@ -53,7 +53,7 @@ export default {
 	color: #03045E;
 	}
 	#maincontainer {
-		width: 1600px;
-		margin-left: 250px;
+		margin-left: 210px;
+		margin-right: 30px;
 	}
 </style>

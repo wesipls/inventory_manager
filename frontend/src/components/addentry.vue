@@ -3,9 +3,9 @@
 	<p>memes</p>
 	<form v-on:submit.prevent="submitForm">
 		<label for="location">Location</label>
-		<input type="text" id="location" placeholder="Location" v-model="form.location">
+		<input type="text" id="location" placeholder="Location">
 		<label for="name">Name</label>
-		<input type="text" id="name" placeholder="Name" v-model="form.name">
+		<input type="text" id="name" placeholder="Name">
 	</form>
 	</div>
 </template>
@@ -17,8 +17,6 @@
 </script>
 <style scoped>
 #main {
-	margin-top: 500px;
-	margin-left: 500px;
-	float: left;
+	z-index: 2;
 }
 </style>

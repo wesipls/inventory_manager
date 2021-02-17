@@ -1,6 +1,7 @@
 <template>
 	<div>
-		<addentry />
+		<a v-on:click="isHidden = !isHidden" href="#">Add Entry</a>
+		<addentry v-if="!isHidden"></addentry>
 		<invlist />
 	</div>
 </template>
@@ -14,6 +15,13 @@
 		components: {
 			addentry,
 			invlist
+		},
+
+		data() {
+			return {
+				isHidden: true
+			};
 		}
 	}
+
 </script>
