@@ -1,8 +1,24 @@
 <template>
-	<div>
-		<a v-on:click="isHidden = !isHidden" href="#">Add Entry</a>
-		<addentry v-if="!isHidden"></addentry>
+	<div id="main">
+		<div id="entrytopbar">
+			<button @click="$refs.modalName.openModal()">Add entry</button>
+			<button>Delete Entry</button>
+		</div>
 		<invlist />
+		<addentry ref="modalName">
+			<template v-slot:header>
+				<h1>Modal title</h1>
+			</template>
+			<template v-slot:body>
+				<p>Working Modal</p>
+			</template>
+			<template v-slot:footer>
+				<div>
+					<button @click="$refs.modalName.closeModal()">Cancel</button>
+					<button @click="$refs.modalName.closeModal()">Save</button>
+				</div>
+			</template>
+		</addentry>
 	</div>
 </template>
 
@@ -19,9 +35,20 @@
 
 		data() {
 			return {
-				isHidden: true
 			};
 		}
 	}
 
 </script>
+<style scoped>
+	button {
+		max-width: 20%;
+	}
+	#entrytopbar {
+		text-align: center;
+		background-color: #CAF0F8;
+		position: fixed;
+		width: calc(100% - 240px);
+		z-index: 3;
+	}
+</style>

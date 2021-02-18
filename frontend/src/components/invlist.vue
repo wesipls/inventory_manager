@@ -77,6 +77,7 @@ import axios from 'axios';
 		text-align: center;
 		}
 	#topbar {
+		padding-top: 40px;
 		position: fixed;
 		background-color: #CAF0F8;
 		width: calc(100% - 240px);
