@@ -1,7 +1,7 @@
 <template>
 	<div class="modal" v-if="show">
 		<div id="innerModal">
-			<form>
+			<form v-on:submit.prevent="submitForm">
 				<div id="labelbox">
 					<label for="location">Location</label>
 					<label for="name">Name</label>
@@ -14,41 +14,57 @@
 					<label for="status">Status</label>
 				</div>
 				<div id="inputbox">
-					<input type="text" class="default" id="location" placeholder="Device location">
-					<input type="text" class="default" id="name" placeholder="Device name">
-					<input type="text" class="default" id="model" placeholder="Model">
-					<input type="text" class="default" id="manufacturer" placeholder="Manufacturer">
-					<input type="number" class="default" id="price" min="0.00" step="any" placeholder="Price">
-					<input type="text" class="default" onfocus="(this.type='date')" onblur="(this.type='text')" id="dateofpurchase" placeholder="Date of Purchase">
-					<input type="text" class="default" onfocus="(this.type='date')" onblur="(this.type='text')" id="warrantydate" placeholder="Warranty date end">
-					<input type="text" class="default" id="info" placeholder="Info">
-					<input type="text" class="default" id="status" placeholder="Device status">
+					<input type="text" class="default" id="location" placeholder="Device location" v-model="form.location">
+					<input type="text" class="default" id="name" placeholder="Device name" v-model="form.name">
+					<input type="text" class="default" id="model" placeholder="Model" v-model="form.model">
+					<input type="text" class="default" id="manufacturer" placeholder="Manufacturer" v-model="form.manufacturer">
+					<input type="number" class="default" id="price" min="0.00" step="any" placeholder="Price" v-model="form.price">
+					<input type="text" class="default" onfocus="(this.type='date')" onblur="(this.type='text')" id="dateofpurchase" placeholder="Date of Purchase" v-model="form.dateofpurchase">
+					<input type="text" class="default" onfocus="(this.type='date')" onblur="(this.type='text')" id="warrantydate" placeholder="Warranty date end" v-model="form.warrantydate">
+					<input type="text" class="default" id="info" placeholder="Info" v-model="form.info">
+					<input type="text" class="default" id="status" placeholder="Device status" v-model="form.status">
 				</div>
+				<button type="button" @click="submitForm(); closeModal()">Save</button>
 			</form>
-			<button type="button" @click="closeModal()">Save</button>
 			<button type="button" @click="closeModal()">Close</button>
 		</div>
 	</div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: "addentry",
   data() {
     return {
-      show: false
+	show: false,
+	form: {
+		location: '',
+		name: '',
+		model: '',
+		manufacturer: '',
+		price: '',
+		dateofpurchase: '',
+		warrantydate: '',
+		info: '',
+		status: '',
+	}
     };
   },
-  methods: {
-    closeModal() {
-      this.show = false;
-      document.querySelector("body").classList.remove("overflow-hidden");
-    },
-    openModal() {
-      this.show = true;
-      document.querySelector("body").classList.add("overflow-hidden");
-    }
-  }
+	methods: {
+		closeModal() {
+			this.show = false;
+			document.querySelector("body").classList.remove("overflow-hidden");
+		},
+		openModal() {
+			this.show = true;
+			document.querySelector("body").classList.add("overflow-hidden");
+		},
+		submitForm(){
+			axios.post('http://localhost:8100/create', this.form)
+		},
+	
+	}
 };
 </script>
 
