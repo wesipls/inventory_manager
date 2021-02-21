@@ -1,11 +1,11 @@
 <template>
 	<div id="main">
 		<div id="entrytopbar">
-			<button @click="$refs.modalName.openModal()">Add entry</button>
+			<button @click="$refs.addentry.openModal()">Add entry</button>
 			<button>Delete Entry</button>
 		</div>
 		<invlist />
-		<addentry ref="modalName">
+		<addentry ref="addentry">
 		</addentry>
 	</div>
 </template>
