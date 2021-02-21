@@ -6,18 +6,6 @@
 		</div>
 		<invlist />
 		<addentry ref="modalName">
-			<template v-slot:header>
-				<h1>Modal title</h1>
-			</template>
-			<template v-slot:body>
-				<p>Working Modal</p>
-			</template>
-			<template v-slot:footer>
-				<div>
-					<button @click="$refs.modalName.closeModal()">Cancel</button>
-					<button @click="$refs.modalName.closeModal()">Save</button>
-				</div>
-			</template>
 		</addentry>
 	</div>
 </template>

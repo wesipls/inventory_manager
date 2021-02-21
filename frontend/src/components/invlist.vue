@@ -97,7 +97,7 @@ import axios from 'axios';
 	#wrap {
 		background-color: #48CAE4;
 		width: 100%;
-		padding-top: 110px;
+		padding-top: 160px;
 	}
 	table {
 		width: 100%;

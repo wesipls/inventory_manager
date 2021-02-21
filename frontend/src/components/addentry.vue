@@ -1,19 +1,10 @@
 <template>
 	<div class="modal" v-if="show">
-		<div class="modal__backdrop" @click="closeModal()"/>
-			<div class="modal__dialog">
-				<div class="modal__header">
-					<slot name="header"/>
-					<button type="button" class="modal__close" @click="closeModal()">
-					</button>
-				</div>
-				<div class="modal__body">
-					<slot name="body"/>
-				</div>
-				<div class="modal__footer">
-					<slot name="footer"/>
-				</div>
-			</div>
+		<div id="innerModal">
+		<p> test</p>
+		<button type="button" @click="closeModal()">Save</button>
+		<button type="button" @click="closeModal()">Close</button>
+		</div>
 	</div>
 </template>
 
@@ -51,7 +42,14 @@ export default {
 	z-index: 9;
 	overflow-x: hidden;
 	overflow-y: auto;
-	background-color: red;
-	
+	background-color: rgba(102,102,153,0.8);
+	text-align: center;
 }
+#innerModal {
+	background-color: #CAF0F8;
+	margin: 0 auto;
+	width: 60%;
+
+}
+
 </style>
