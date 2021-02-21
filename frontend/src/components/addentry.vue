@@ -61,7 +61,7 @@ export default {
 			document.querySelector("body").classList.add("overflow-hidden");
 		},
 		submitForm(){
-			axios.post('http://localhost:8100/create', this.form)
+			axios.post("http://localhost:8100/create" , this.form)
 		},
 	
 	}

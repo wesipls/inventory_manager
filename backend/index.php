@@ -12,8 +12,8 @@ switch ($request) {
     case '/read' :
         require __DIR__ . '/actions/read.php';
 	break;
-    case '/write' :
-	require __DIR__ . '/actions/write.php';
+    case '/create' :
+	require __DIR__ . '/actions/create.php';
 	break;
     default:
         http_response_code(404);
