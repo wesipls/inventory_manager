@@ -4,7 +4,7 @@ include 'config/cors.php';
 //Include database settings
 include 'config/db-connection.php';
 
-$received_data = json_decode(file_get_contents("php://input") ?? $_POST);
+$received_data = json_decode(file_get_contents("php://input") ?? $_POST,true);
 
 $location = $received_data["location"];
 $name = $received_data["name"];
@@ -18,11 +18,9 @@ $status = $received_data["status"];
 
 $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if($received_data->query != '')
-$sql = "INSERT INTO devices (device_location, device_name, device_model, device_manufacturer, device_price, device_purchase_date, device_warranty_date, device_info, device_status) VALUES (?,?,?,?,?,?,?,?,?)";
-}
+$sql = "INSERT INTO devices (device_location, device_name, device_model, device_manufacturer, device_price, device_info, device_status) VALUES (?,?,?,?,?,?,?)";
+
 $stmt = $connect->prepare($sql);
-$stmt->execute([$location, $name, $model, $manufacturer, $price, $dateofpurchase, $warrantydate, $info, $status]);
-	
+$stmt->execute([$location, $name, $model, $manufacturer, $price, $info, $status]);	
 $connect = null;
 ?>
