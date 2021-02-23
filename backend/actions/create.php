@@ -18,9 +18,9 @@ $status = $received_data["status"];
 
 $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql = "INSERT INTO devices (device_location, device_name, device_model, device_manufacturer, device_price, device_info, device_status) VALUES (?,?,?,?,?,?,?)";
+$sql = "INSERT INTO devices (device_location, device_name, device_model, device_manufacturer, device_price, device_purchase_date, device_warranty_date, device_info, device_status) VALUES (?,?,?,?,?,?,?,?,?)";
 
 $stmt = $connect->prepare($sql);
-$stmt->execute([$location, $name, $model, $manufacturer, $price, $info, $status]);	
+$stmt->execute([$location, $name, $model, $manufacturer, $price, $dateofpurchase, $warrantydate, $info, $status]);	
 $connect = null;
 ?>
