@@ -24,9 +24,9 @@
 					<input type="text" class="default" id="info" placeholder="Info" v-model="form.info">
 					<input type="text" class="default" id="status" placeholder="Device status" v-model="form.status">
 				</div>
-				<button type="button" @click="submitForm(); closeModal()">Save</button>
+				<button type="button" @click="submitForm(); closeModal();">Save</button>
+				<button type="button" @click="closeModal()">Close</button>
 			</form>
-			<button type="button" @click="closeModal()">Close</button>
 		</div>
 	</div>
 </template>
@@ -61,9 +61,8 @@ export default {
 			document.querySelector("body").classList.add("overflow-hidden");
 		},
 		submitForm(){
-			axios.post("http://localhost:8100/create" , this.form)
+			axios.post("http://localhost:8100/create" , this.form);
 		},
-	
 	}
 };
 </script>

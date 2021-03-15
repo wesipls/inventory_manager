@@ -16,6 +16,16 @@ $warrantydate = $received_data["warrantydate"];
 $info = $received_data["info"];
 $status = $received_data["status"];
 
+if(empty($dateofpurchase)){
+    $dateofpurchase = '0000-00-00';
+}
+if(empty($warrantydate)){
+    $warrantydate = '0000-00-00';
+}
+if(empty($price)){
+    $price = '0';
+}
+
 $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $sql = "INSERT INTO devices (device_location, device_name, device_model, device_manufacturer, device_price, device_purchase_date, device_warranty_date, device_info, device_status) VALUES (?,?,?,?,?,?,?,?,?)";
