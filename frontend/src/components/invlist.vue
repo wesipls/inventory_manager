@@ -42,6 +42,9 @@
 import axios from 'axios';
 	export default {
 		name: 'invlist',
+		created() {
+		this.$root.$refs.invlist = this;
+		},
 		data() {
 			return {
 				inventorylist: [],

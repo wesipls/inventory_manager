@@ -24,7 +24,7 @@
 					<input type="text" class="default" id="info" placeholder="Info" v-model="form.info">
 					<input type="text" class="default" id="status" placeholder="Device status" v-model="form.status">
 				</div>
-				<button type="button" @click="submitForm(); closeModal();">Save</button>
+				<button type="button" @click="submitForm(); closeModal(); reloadList();">Save</button>
 				<button type="button" @click="closeModal()">Close</button>
 			</form>
 		</div>
@@ -63,6 +63,9 @@ export default {
 		submitForm(){
 			axios.post("http://localhost:8100/create" , this.form);
 		},
+		reloadList(){
+		this.$root.$refs.invlist.getInventorylist();
+		}
 	}
 };
 </script>
