@@ -21,13 +21,13 @@
 		<div id="wrap">
 			<table>
 				<tr v-for="data in inventorylist" :key=data.id>
-					<td style="width: 5%">{{ data.device_id }}</td>
+					<td style="width:5%">{{ data.device_id }}</td>
 					<td style="width:10%">{{ data.device_location }}</td>
 					<td style="width:10%">{{ data.device_name }}</td>
 					<td style="width:10%">{{ data.device_model }}</td>
 					<td style="width:10%">{{ data.device_manufacturer }}</td>
 					<td style="width:10%">{{ data.device_price }}</td>
-					<td style="width:10%;">{{ data.device_purchase_date }}</td>
+					<td style="width:10%">{{ data.device_purchase_date }}</td>
 					<td style="width:10%">{{ data.device_warranty_date }}</td>
 					<td style="width:20%">{{ data.device_info }}</td>
 					<td style="width:5%">{{ data.device_status }}</td>

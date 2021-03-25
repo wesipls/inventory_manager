@@ -2,7 +2,6 @@
 	<div id="main">
 		<div id="entrytopbar">
 			<button @click="$refs.addentry.openModal()">Add entry</button>
-			<button>Delete Entry</button>
 		</div>
 		<invlist />
 		<addentry ref="addentry">

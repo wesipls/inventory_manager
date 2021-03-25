@@ -15,6 +15,9 @@ switch ($request) {
     case '/create' :
 	require __DIR__ . '/actions/create.php';
 	break;
+    case '/delete' :
+	require __DIR__ . '/actions/delete.php';
+	break;
     default:
         http_response_code(404);
         require __DIR__ . '/views/404.php';
