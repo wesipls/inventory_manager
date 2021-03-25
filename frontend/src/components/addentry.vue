@@ -2,6 +2,7 @@
 	<div class="modal" v-if="show">
 		<div id="innerModal">
 			<form v-on:submit.prevent="submitForm">
+			<button type="button" v-on:click="addNewForm">Add +</button>
 				<div id="labelbox">
 					<label for="location">Location</label>
 					<label for="name">Name</label>
@@ -13,8 +14,9 @@
 					<label for="info">Info</label>
 					<label for="status">Status</label>
 				</div>
-				<div id="inputbox">
-					<input type="text" class="default" id="location" placeholder="Device location" v-model="form.location">
+				<div :key="index.id" v-for="(form, index) in forms" id="inputbox">
+					<button type="button" v-on:click="removeForm(index)">Rem - </button>
+					<input type="text" class="default" id="location" placeholder="Device location" v-model="form.location" name="forms[][location]">
 					<input type="text" class="default" id="name" placeholder="Device name" v-model="form.name">
 					<input type="text" class="default" id="model" placeholder="Model" v-model="form.model">
 					<input type="text" class="default" id="manufacturer" placeholder="Manufacturer" v-model="form.manufacturer">
@@ -33,6 +35,7 @@
 
 <script>
 import axios from 'axios';
+import vue from 'vue';
 export default {
   name: "addentry",
   data() {
@@ -48,10 +51,17 @@ export default {
 		warrantydate: '',
 		info: '',
 		status: '',
-	}
+	},
+	forms: [],
     };
   },
-	methods: {
+	methods:{
+		addNewForm() {
+			this.forms.push(vue.util.extend({}, this.form))
+		},
+		removeForm(index) {
+			vue.delete(this.forms, index);
+		},
 		closeModal() {
 			this.show = false;
 			document.querySelector("body").classList.remove("overflow-hidden");
@@ -61,7 +71,7 @@ export default {
 			document.querySelector("body").classList.add("overflow-hidden");
 		},
 		submitForm(){
-			axios.post("http://localhost:8100/create" , this.form);
+			axios.post("http://localhost:8100/create" , this.forms);
 		},
 		reloadList(){
 		this.$root.$refs.invlist.getInventorylist();
