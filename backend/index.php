@@ -18,6 +18,9 @@ switch ($request) {
     case '/delete' :
 	require __DIR__ . '/actions/delete.php';
 	break;
+    case '/update' :
+	require __DIR__ . '/actions/update.php';
+	break;
     default:
         http_response_code(404);
         require __DIR__ . '/views/404.php';

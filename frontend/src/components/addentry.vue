@@ -16,7 +16,7 @@
 				</div>
 				<div :key="index.id" v-for="(form, index) in forms" id="inputbox">
 					<button type="button" v-on:click="removeForm(index)">Rem - </button>
-					<input type="text" class="default" id="location" placeholder="Device location" v-model="form.location" name="forms[][location]">
+					<input type="text" class="default" id="location" placeholder="Device location" v-model="form.location">
 					<input type="text" class="default" id="name" placeholder="Device name" v-model="form.name">
 					<input type="text" class="default" id="model" placeholder="Model" v-model="form.model">
 					<input type="text" class="default" id="manufacturer" placeholder="Manufacturer" v-model="form.manufacturer">
@@ -71,10 +71,11 @@ export default {
 			document.querySelector("body").classList.add("overflow-hidden");
 		},
 		submitForm(){
+			console.log(this.forms);
 			axios.post("http://localhost:8100/create" , this.forms);
 		},
 		reloadList(){
-		this.$root.$refs.invlist.getInventorylist();
+			this.$root.$refs.invlist.getInventorylist();
 		}
 	}
 };

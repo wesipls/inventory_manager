@@ -30,6 +30,7 @@
 <style scoped>
 	button {
 		max-width: 20%;
+		margin-right: 200px;
 	}
 	#entrytopbar {
 		text-align: center;

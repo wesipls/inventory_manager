@@ -19,20 +19,23 @@
 			</div>
 		</div>
 		<div id="wrap">
+			<form>
 			<table>
 				<tr v-for="data in inventorylist" :key=data.id>
-					<td style="width:5%">{{ data.device_id }}</td>
-					<td style="width:10%">{{ data.device_location }}</td>
-					<td style="width:10%">{{ data.device_name }}</td>
-					<td style="width:10%">{{ data.device_model }}</td>
-					<td style="width:10%">{{ data.device_manufacturer }}</td>
-					<td style="width:10%">{{ data.device_price }}</td>
-					<td style="width:10%">{{ data.device_purchase_date }}</td>
-					<td style="width:10%">{{ data.device_warranty_date }}</td>
-					<td style="width:20%">{{ data.device_info }}</td>
-					<td style="width:5%">{{ data.device_status }}</td>
+					<td style="width:5%"><input style="width:80%;" type="text" v-model="data.device_id"></td>
+					<td style="width:10%"><input style="width:80%;" type="text" v-model="data.device_location"></td>
+					<td style="width:10%"><input style="width:80%;" type="text" v-model="data.device_name"></td>
+					<td style="width:10%"><input style="width:80%;" type="text" v-model="data.device_model"></td>
+					<td style="width:10%"><input style="width:80%;" type="text" v-model="data.device_manufacturer"></td>
+					<td style="width:10%"><input style="width:80%;" type="text" v-model="data.device_price"></td>
+					<td style="width:10%"><input style="width:80%;" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" v-model="data.device_purchase_date"></td>
+					<td style="width:10%"><input style="width:80%;" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" v-model="data.device_warranty_date"></td>
+					<td style="width:20%"><input style="width:80%;" type="text" v-model="data.device_info"></td>
+					<td style="width:5%"><input style="width:80%;" type="text" v-model="data.device_status"></td>
 				</tr>
 			</table>
+			<button type="button" @click="submitUpdates">Confirm</button>
+			</form>
 		</div>
 			
 	</div>
@@ -68,8 +71,16 @@ import axios from 'axios';
 						this.nodata = true;
 					}
 					}
-					)}
+					)
 			},
+			submitUpdates(){
+				axios.post("http://localhost:8100/update" , this.inventorylist);
+			},
+			testButton(){
+				console.log(this.inventorylist);
+			},
+		},
+
 			beforeMount() {
 			this.getInventorylist()
 		}
@@ -87,6 +98,7 @@ import axios from 'axios';
 	}
 	#searchbox {
 		width: 60%;
+		margin-right: 200px;
 	}
 	#topspanner {
 		background-color: #48CAE4;
