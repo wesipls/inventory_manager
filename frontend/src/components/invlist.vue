@@ -3,9 +3,12 @@
 <template>
 	<div id="main">
 		<div id="topbar">
+		<input type="text"  id="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
+		<button @click="$refs.addentry.openModal()">Add entry</button>
+		<addentry ref="addentry">
+		</addentry>
 		<button type="button" @click="submitUpdates">Submit Entry</button>
-			<input type="text"  id="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
-			<h4 id="counter">There are a total of {{ inventorylist.length }} devices found with current keyword</h4>
+			<h4 id="counter">Search found {{ inventorylist.length }} devices</h4>
 			<div id="topspanner">
 				<span style="width:5%">ID</span>
 				<span style="width:10%">LOC</span>
@@ -43,8 +46,11 @@
 
 <script>
 import axios from 'axios';
+import addentry from '../components/addentry.vue'
 	export default {
 		name: 'invlist',
+		components: { addentry,
+		},
 		created() {
 		this.$root.$refs.invlist = this;
 		},
@@ -88,21 +94,27 @@ import axios from 'axios';
 </script>
 <style scoped>
 	#main {
-		text-align: center;
+		text-align: center;	
 		}
 	#topbar {
-		padding-top: 40px;
 		position: fixed;
 		background-color: #CAF0F8;
 		width: calc(100% - 240px);
 	}
+	#counter {
+		width: 20%;
+		margin-top: 5px;
+	}
 	#searchbox {
-		width: 60%;
+		width: 40%;
 		margin-right: 200px;
 	}
 	#topspanner {
 		background-color: #48CAE4;
-		width: 100%;
+		margin: 0;
+		padding: 0;
+		left: 0;
+		right: 0;
 	}
 	span {
 		display: inline-block;
@@ -112,7 +124,7 @@ import axios from 'axios';
 	#wrap {
 		background-color: #48CAE4;
 		width: 100%;
-		padding-top: 160px;
+		padding-top: 100px;
 	}
 	table {
 		width: 100%;

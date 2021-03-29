@@ -1,23 +1,16 @@
 <template>
 	<div id="main">
-		<div id="entrytopbar">
-			<button @click="$refs.addentry.openModal()">Add entry</button>
-		</div>
 		<invlist />
-		<addentry ref="addentry">
-		</addentry>
 	</div>
 </template>
 
 <script>
-	import addentry from '../components/addentry.vue'
 	import invlist from '../components/invlist.vue'
 
 	export default {
 		name: 'invmanager',
 		components: {
-			addentry,
-			invlist
+			invlist,
 		},
 
 		data() {
@@ -28,15 +21,4 @@
 
 </script>
 <style scoped>
-	button {
-		max-width: 20%;
-		margin-right: 200px;
-	}
-	#entrytopbar {
-		text-align: center;
-		background-color: #CAF0F8;
-		position: fixed;
-		width: calc(100% - 240px);
-		z-index: 3;
-	}
 </style>
