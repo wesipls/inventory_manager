@@ -25,14 +25,26 @@ The rest will be installed by composer and dockerfile
 
 Currently Add Entries and Submit Entries work from the Inventory tab, Add entries lets you add completely new entries to the database.
 
-Submit entries will save and changes made to the device table, fields can be edited by clicking on them.
+Submit entries will save and changes made to the device table, fields can be edited by clicking on them.  
+
+scripts/docker-clean.sh will clear cache, volumes, images, and the db folder of this project, only used for testing new installation of inventory_manager.
+
+## Other stuff
+
+If you find something that gives you a headache here, feel free to fix it.
+Design suggestions welcome.
 
 ## TODOs
 
 Archives entries button, should move devices with specific status to another "Archived database"  
 Delete button, maybe, maybe no, for accounting reasons the devices should not be deleted, although it makes sence to include one delete button somewhere, probably a new maintenance tab.  
-docker-clean.sh, for cleaning old docker volumes, cache, layers to test "new deployments"  
 Dashboard, quick statistics for current inventory  
 Import tab, for importing device info from store pages  
 export tab, for exporting database to different formats, excel and db dump most important  
 Backups, maintenance tab, backup database to specified location  
+Fix list reloading after new entry
+Fix MySQL auto_increment starting from 5 for id
+
+## Done 
+docker-clean.sh, for cleaning old docker volumes, cache, layers to test "new deployments"  
+
