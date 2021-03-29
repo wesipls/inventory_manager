@@ -28,6 +28,6 @@ Submit entries will save and changes made to the device table, fields can be edi
 
 ## TODOs
 
-Archives entries button, should move devices with specific status to another "Archived database"
-Delete button, maybe, maybe no, for accounting reasons the devices should not be deleted, although it makes sence to include one delete button somewhere, probably a new maintenance tab.
-docker-clean.sh, for cleaning old docker volumes, cache, layers to test "new deployments"
+Archives entries button, should move devices with specific status to another "Archived database"  
+Delete button, maybe, maybe no, for accounting reasons the devices should not be deleted, although it makes sence to include one delete button somewhere, probably a new maintenance tab.  
+docker-clean.sh, for cleaning old docker volumes, cache, layers to test "new deployments"  
