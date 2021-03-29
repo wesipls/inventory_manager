@@ -14,7 +14,7 @@ services:
                 volumes:
                         - ./db:/var/lib/mysql
                         - type: bind
-                          source: ./my.cnf
+                          source: ./configs/my.cnf
                           target: /etc/mysql/my.cnf
         backend:
                 container_name: backend
