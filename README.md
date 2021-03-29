@@ -42,7 +42,7 @@ Dashboard, quick statistics for current inventory
 Import tab, for importing device info from store pages  
 export tab, for exporting database to different formats, excel and db dump most important  
 Backups, maintenance tab, backup database to specified location  
-Fix list reloading after new entry
+Fix list reloading after new entry  
 Fix MySQL auto_increment starting from 5 for id
 
 ## Done 
