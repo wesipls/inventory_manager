@@ -4,10 +4,11 @@
 	<div id="main">
 		<div id="topbar">
 		<input type="text"  id="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
-		<button @click="$refs.addentry.openModal()">Add entry</button>
+		<button @click="$refs.addentry.openModal()">Add entries</button>
 		<addentry ref="addentry">
 		</addentry>
-		<button type="button" @click="submitUpdates">Submit Entry</button>
+		<button type="button" @click="submitUpdates">Submit entries</button>
+		<button type="button">Archive entries</button>
 			<h4 id="counter">Search found {{ inventorylist.length }} devices</h4>
 			<div id="topspanner">
 				<span style="width:5%">ID</span>

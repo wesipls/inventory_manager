@@ -4,7 +4,7 @@
 	<div id="app">
 	<div id="nav">
 	<router-link to="/">Dashboard</router-link>
-	<router-link to="/inventory">Devices</router-link>
+	<router-link to="/inventory">Inventory</router-link>
 	</div>
 		<div id="maincontainer">
 		<router-view/>
