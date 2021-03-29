@@ -3,6 +3,7 @@
 <template>
 	<div id="main">
 		<div id="topbar">
+		<button type="button" @click="submitUpdates">Submit Entry</button>
 			<input type="text"  id="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
 			<h4 id="counter">There are a total of {{ inventorylist.length }} devices found with current keyword</h4>
 			<div id="topspanner">
@@ -22,19 +23,18 @@
 			<form>
 			<table>
 				<tr v-for="data in inventorylist" :key=data.id>
-					<td style="width:5%"><input style="width:80%;" type="text" v-model="data.device_id"></td>
-					<td style="width:10%"><input style="width:80%;" type="text" v-model="data.device_location"></td>
-					<td style="width:10%"><input style="width:80%;" type="text" v-model="data.device_name"></td>
-					<td style="width:10%"><input style="width:80%;" type="text" v-model="data.device_model"></td>
-					<td style="width:10%"><input style="width:80%;" type="text" v-model="data.device_manufacturer"></td>
-					<td style="width:10%"><input style="width:80%;" type="text" v-model="data.device_price"></td>
-					<td style="width:10%"><input style="width:80%;" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" v-model="data.device_purchase_date"></td>
-					<td style="width:10%"><input style="width:80%;" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" v-model="data.device_warranty_date"></td>
-					<td style="width:20%"><input style="width:80%;" type="text" v-model="data.device_info"></td>
-					<td style="width:5%"><input style="width:80%;" type="text" v-model="data.device_status"></td>
+					<td style="width:5%"><input class="tbl" type="text" v-model="data.device_id"></td>
+					<td style="width:10%"><input class="tbl" type="text" v-model="data.device_location"></td>
+					<td style="width:10%"><input class="tbl" type="text" v-model="data.device_name"></td>
+					<td style="width:10%"><input class="tbl" type="text" v-model="data.device_model"></td>
+					<td style="width:10%"><input class="tbl" type="text" v-model="data.device_manufacturer"></td>
+					<td style="width:10%"><input class="tbl" type="text" v-model="data.device_price"></td>
+					<td style="width:10%"><input class="tbl" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" v-model="data.device_purchase_date"></td>
+					<td style="width:10%"><input class="tbl" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" v-model="data.device_warranty_date"></td>
+					<td style="width:20%"><input class="tbl" type="text" v-model="data.device_info"></td>
+					<td style="width:5%"><input class="tbl" type="text" v-model="data.device_status"></td>
 				</tr>
 			</table>
-			<button type="button" @click="submitUpdates">Confirm</button>
 			</form>
 		</div>
 			
@@ -126,4 +126,11 @@ import axios from 'axios';
 	tr:nth-child(even) {
 		background-color: white;
 	}
+	.tbl {
+		width:80%;
+		border: 0;
+		-webkit-appearance: none;
+		background-color: transparent;
+		outline: none;
+	}	
 </style>
