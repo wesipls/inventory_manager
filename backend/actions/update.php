@@ -17,8 +17,8 @@ $name = $received_data[$i]["device_name"];
 $model = $received_data[$i]["device_model"];
 $manufacturer = $received_data[$i]["device_manufacturer"];
 $price = $received_data[$i]["device_price"];
-$dateofpurchase = $received_data[$i]["device_dateofpurchase"];
-$warrantydate = $received_data[$i]["device_warrantydate"];
+$dateofpurchase = $received_data[$i]["device_purchase_date"];
+$warrantydate = $received_data[$i]["device_warranty_date"];
 $info = $received_data[$i]["device_info"];
 $status = $received_data[$i]["device_status"];
 
