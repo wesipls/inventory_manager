@@ -1,6 +1,7 @@
 # Inventory Management Software
 
-Requires Docker and docker-compose
+Requires Docker and docker-compose  
+The rest will be installed by composer and dockerfile
 
 ## Usage
 
