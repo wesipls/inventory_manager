@@ -19,3 +19,9 @@ Requires Docker and docker-compose
 7, When asked for a password type in the password specified in docker-compose.yml (default password is: P4ssW0rd)
 
 8, if init-db.sh cannot be executed be run: chmod +x init-db.sh, and rerun step 6 and 7
+
+## Features
+
+Currently Add Entries and Submit Entries work from the Inventory tab, Add entries lets you add completely new entries to the database.
+
+Submit entries will save and changes made to the device table, fields can be edited by clicking on them.
