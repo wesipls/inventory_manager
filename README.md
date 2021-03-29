@@ -31,3 +31,7 @@ Submit entries will save and changes made to the device table, fields can be edi
 Archives entries button, should move devices with specific status to another "Archived database"  
 Delete button, maybe, maybe no, for accounting reasons the devices should not be deleted, although it makes sence to include one delete button somewhere, probably a new maintenance tab.  
 docker-clean.sh, for cleaning old docker volumes, cache, layers to test "new deployments"  
+Dashboard, quick statistics for current inventory  
+Import tab, for importing device info from store pages  
+export tab, for exporting database to different formats, excel and db dump most important  
+Backups, maintenance tab, backup database to specified location  
