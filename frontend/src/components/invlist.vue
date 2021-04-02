@@ -4,11 +4,11 @@
 	<div id="main">
 		<div id="topbar">
 		<input type="text"  id="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
-		<button @click="$refs.addentry.openModal()">Add entries</button>
+		<button type="button" @click="$refs.addentry.addNewForm();">New Entry</button>
+		<button type="button" @click="submitUpdates(); $refs.addentry.submitForm(); getInventorylist();">Submit entries</button>
+		<button type="button">Archive entries</button>
 		<addentry ref="addentry">
 		</addentry>
-		<button type="button" @click="submitUpdates">Submit entries</button>
-		<button type="button">Archive entries</button>
 			<h4 id="counter">Search found {{ inventorylist.length }} devices</h4>
 			<div id="topspanner">
 				<span style="width:5%">ID</span>
@@ -24,6 +24,8 @@
 			</div>
 		</div>
 		<div id="wrap">
+		<addentry ref="addentry">
+		</addentry>
 			<form>
 			<table>
 				<tr v-for="data in inventorylist" :key=data.id>
@@ -50,7 +52,8 @@ import axios from 'axios';
 import addentry from '../components/addentry.vue'
 	export default {
 		name: 'invlist',
-		components: { addentry,
+		components: { 
+		addentry,
 		},
 		created() {
 		this.$root.$refs.invlist = this;
@@ -82,9 +85,6 @@ import addentry from '../components/addentry.vue'
 			},
 			submitUpdates(){
 				axios.post("http://localhost:8100/update" , this.inventorylist);
-			},
-			testButton(){
-				console.log(this.inventorylist);
 			},
 		},
 

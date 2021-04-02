@@ -1,35 +1,23 @@
 <template>
-	<div class="modal" v-if="show">
-		<div id="innerModal">
-			<form v-on:submit.prevent="submitForm">
-			<button type="button" v-on:click="addNewForm">Add +</button>
-				<div id="labelbox">
-					<label for="location">Location</label>
-					<label for="name">Name</label>
-					<label for="model">Model</label>
-					<label for="manufacturer">Manufacturer</label>
-					<label for="price">Price</label>
-					<label for="dateofpurchase">Date of purchase</label>
-					<label for="warrantydate">Warranty date</label>
-					<label for="info">Info</label>
-					<label for="status">Status</label>
-				</div>
-				<div :key="index.id" v-for="(form, index) in forms" id="inputbox">
-					<button type="button" v-on:click="removeForm(index)">Rem - </button>
-					<input type="text" class="default" id="location" placeholder="Device location" v-model="form.location">
-					<input type="text" class="default" id="name" placeholder="Device name" v-model="form.name">
-					<input type="text" class="default" id="model" placeholder="Model" v-model="form.model">
-					<input type="text" class="default" id="manufacturer" placeholder="Manufacturer" v-model="form.manufacturer">
-					<input type="number" class="default" id="price" min="0.00" step="any" placeholder="Price" v-model="form.price">
-					<input type="text" class="default" onfocus="(this.type='date')" onblur="(this.type='text')" id="dateofpurchase" placeholder="Date of Purchase" v-model="form.dateofpurchase">
-					<input type="text" class="default" onfocus="(this.type='date')" onblur="(this.type='text')" id="warrantydate" placeholder="Warranty date end" v-model="form.warrantydate">
-					<input type="text" class="default" id="info" placeholder="Info" v-model="form.info">
-					<input type="text" class="default" id="status" placeholder="Device status" v-model="form.status">
-				</div>
-				<button type="button" @click="submitForm(); closeModal(); reloadList();">Save</button>
-				<button type="button" @click="closeModal()">Close</button>
-			</form>
+	<div id="main">
+		<form v-on:submit.prevent="submitForm">
+		<div :key="index.id" v-for="(form, index) in forms" id="inputbox">
+			<table>
+				<tr>
+				<td style="width:5%;"><button type="button" v-on:click="removeForm(index)">Rem - </button></td>
+				<td style="width:10%;"><input type="text" class="tbl" id="location" placeholder="Device location" v-model="form.location"></td>
+				<td style="width:10%;"><input type="text" class="tbl" id="name" placeholder="Device name" v-model="form.name"></td>
+				<td style="width:10%;"><input type="text" class="tbl" id="model" placeholder="Model" v-model="form.model"></td>
+				<td style="width:10%;"><input type="text" class="tbl" id="manufacturer" placeholder="Manufacturer" v-model="form.manufacturer"></td>
+				<td style="width:10%;"><input type="number" class="tbl" id="price" min="0.00" step="any" placeholder="Price" v-model="form.price"></td>
+				<td style="width:10%;"><input type="text" class="tbl" onfocus="(this.type='date')" onblur="(this.type='text')" id="dateofpurchase" placeholder="Date of Purchase" v-model="form.dateofpurchase"></td>
+				<td style="width:10%;"><input type="text" class="tbl" onfocus="(this.type='date')" onblur="(this.type='text')" id="warrantydate" placeholder="Warranty date end" v-model="form.warrantydate"></td>
+				<td style="width:20%;"><input type="text" class="tbl" id="info" placeholder="Info" v-model="form.info"></td>
+				<td style="width:5%;"><input type="text" class="tbl" id="status" placeholder="Device status" v-model="form.status"></td>
+				</tr>
+			</table>
 		</div>
+		</form>
 	</div>
 </template>
 
@@ -37,24 +25,23 @@
 import axios from 'axios';
 import vue from 'vue';
 export default {
-  name: "addentry",
-  data() {
-    return {
-	show: false,
-	form: {
-		location: '',
-		name: '',
-		model: '',
-		manufacturer: '',
-		price: '',
-		dateofpurchase: '',
-		warrantydate: '',
-		info: '',
-		status: '',
+	name: "addentry",
+	data() {
+		return {
+		form: {
+			location: '',
+			name: '',
+			model: '',
+			manufacturer: '',
+			price: '',
+			dateofpurchase: '',
+			warrantydate: '',
+			info: '',
+			status: '',
+		},
+		forms: [],
+		};
 	},
-	forms: [],
-    };
-  },
 	methods:{
 		addNewForm() {
 			this.forms.push(vue.util.extend({}, this.form))
@@ -62,46 +49,16 @@ export default {
 		removeForm(index) {
 			vue.delete(this.forms, index);
 		},
-		closeModal() {
-			this.show = false;
-			document.querySelector("body").classList.remove("overflow-hidden");
-		},
-		openModal() {
-			this.show = true;
-			document.querySelector("body").classList.add("overflow-hidden");
-		},
 		submitForm(){
 			console.log(this.forms);
 			axios.post("http://localhost:8100/create" , this.forms);
 		},
-		reloadList(){
-			this.$root.$refs.invlist.getInventorylist();
-		}
 	}
 };
 </script>
-
-
 <style scoped>
-.modal {
+#main {
 	width: 100%;
-	height: 100%;
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 9;
-	overflow-x: hidden;
-	overflow-y: auto;
-	background-color: rgba(102,102,153,0.8);
-	text-align: center;
-}
-#innerModal {
-	background-color: #CAF0F8;
-	margin: 0 auto;
-	width: 80%;
-
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -111,12 +68,27 @@ input::-webkit-inner-spin-button {
 input[type=number] {
 	-moz-appearance: textfield;
 }
-.default {
-	width: 9%;
-}
 label {
 	display: inline-block;
 	width: 10%;
 }
-
+.tbl {
+	width:80%;
+	border: 0;
+	-webkit-appearance: none;
+	background-color: transparent;
+	outline: none;
+}
+table {
+	width: 100%;
+}
+td:nth-child(n+2):nth-child(-n+8) {
+	width: 150px;
+}
+tr:nth-child(odd) {
+	background-color: #CAF0F8;
+}
+tr:nth-child(even) {
+	background-color: white;
+	}
 </style>
