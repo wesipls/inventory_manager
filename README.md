@@ -54,14 +54,6 @@ concept 1,
 Frontend will send 2 json lists, 1 with new entries, 1 with edited entries, to /update and /create  
 FRONTEND heavy load  
 
-concept 2,  
-Frontend will return inventorylist [] to backend  
-PHP will parse JSON and send entries to either /update or /create  
-
-concept 3,  
-Frontend will return inventorylist [] to backend  
-/update will parse whole list in 1 MySQL statement.
-
 concept 4,  
 Frontend will send 1 list with edits and new entries  
 backend will process entries to either /update or /create
