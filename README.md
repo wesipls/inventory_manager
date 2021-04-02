@@ -48,3 +48,16 @@ Fix MySQL auto_increment starting from 5 for id
 ## Done 
 docker-clean.sh, for cleaning old docker volumes, cache, layers to test "new deployments"  
 
+### Invlist POST Concept
+
+concept 1,
+Frontend will send 2 json lists, 1 with new entries, 1 with edited entries, to /update and /create  
+FRONTEND heavy load  
+
+conept 2,
+Frontend will return inventorylist [] to backend  
+PHP will parse JSON and send entries to either /update or /create  
+
+concept 3,
+Frontend will return inventorylist [] to backend  
+/update will parse whole list in 1 MySQL statement.
