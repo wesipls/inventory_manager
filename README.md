@@ -48,7 +48,7 @@ Fix MySQL auto_increment starting from 5 for id
 ## Done 
 docker-clean.sh, for cleaning old docker volumes, cache, layers to test "new deployments"  
 
-### Invlist POST Concept
+## Invlist POST Concept
 
 concept 1,  
 Frontend will send 2 json lists, 1 with new entries, 1 with edited entries, to /update and /create  
@@ -62,6 +62,6 @@ concept 3,
 Frontend will return inventorylist [] to backend  
 /update will parse whole list in 1 MySQL statement.
 
-concept 4
+concept 4,  
 Frontend will send 1 list with edits and new entries  
 backend will process entries to either /update or /create
