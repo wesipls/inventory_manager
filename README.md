@@ -42,18 +42,4 @@ Dashboard, quick statistics for current inventory
 Import tab, for importing device info from store pages  
 export tab, for exporting database to different formats, excel and db dump most important  
 Backups, maintenance tab, backup database to specified location  
-Fix list reloading after new entry  
 Fix MySQL auto_increment starting from 5 for id
-
-## Done 
-docker-clean.sh, for cleaning old docker volumes, cache, layers to test "new deployments"  
-
-## Invlist POST Concept
-
-concept 1,  
-Frontend will send 2 json lists, 1 with new entries, 1 with edited entries, to /update and /create  
-FRONTEND heavy load  
-
-concept 4,  
-Frontend will send 1 list with edits and new entries  
-backend will process entries to either /update or /create
