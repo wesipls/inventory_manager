@@ -53,6 +53,9 @@ export default {
 			console.log(this.forms);
 			axios.post("http://localhost:8100/create" , this.forms);
 		},
+		resetFields () {
+            Object.assign(this.$data, this.$options.data.call(this));
+		},
 	}
 };
 </script>
@@ -81,9 +84,6 @@ label {
 }
 table {
 	width: 100%;
-}
-td:nth-child(n+2):nth-child(-n+8) {
-	width: 150px;
 }
 tr:nth-child(odd) {
 	background-color: #CAF0F8;

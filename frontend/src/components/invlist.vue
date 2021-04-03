@@ -5,7 +5,7 @@
 		<div id="topbar">
 		<input type="text"  id="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
 		<button type="button" @click="$refs.addentry.addNewForm();">New Entry</button>
-		<button type="button" @click="submitUpdates(); $refs.addentry.submitForm(); getInventorylist();">Submit entries</button>
+		<button type="button" @click="submitUpdates(); $refs.addentry.submitForm(); getInventorylist(); $refs.addentry.resetFields();">Submit entries</button>
 		<button type="button">Archive entries</button>
 		<addentry ref="addentry">
 		</addentry>
