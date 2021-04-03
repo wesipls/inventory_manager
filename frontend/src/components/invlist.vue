@@ -5,10 +5,8 @@
 		<div id="topbar">
 		<input type="text"  id="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
 		<button type="button" @click="$refs.addentry.addNewForm();">New Entry</button>
-		<button type="button" @click="submitUpdates(); $refs.addentry.submitForm(); getInventorylist(); $refs.addentry.resetFields();">Submit entries</button>
+		<button type="button" @click="submitUpdates(); $refs.addentry.submitForm(); delayedUpdate(); $refs.addentry.resetFields();">Submit entries</button>
 		<button type="button">Archive entries</button>
-		<addentry ref="addentry">
-		</addentry>
 			<h4 id="counter">Search found {{ inventorylist.length }} devices</h4>
 			<div id="topspanner">
 				<span style="width:5%">ID</span>
@@ -67,7 +65,7 @@ import addentry from '../components/addentry.vue'
 		},
 		methods: {
 			getInventorylist() {
-				axios.post("http://localhost:8100/read" , {
+					axios.post("http://localhost:8100/read" , {
 					query:this.query
 				}).then((response) => {
 					if(response.data.length > 0)
@@ -86,17 +84,24 @@ import addentry from '../components/addentry.vue'
 			submitUpdates(){
 				axios.post("http://localhost:8100/update" , this.inventorylist);
 			},
+			delayedUpdate() {
+				setTimeout(() => {
+					axios.post("http://localhost:8100/read")
+					.then(response => (this.inventorylist = response.data))
+				}, 200)
+			},
+
 		},
 
 			beforeMount() {
 			this.getInventorylist()
-		}
-		}
+		},
+	}
 </script>
 <style scoped>
 	#main {
 		text-align: center;	
-		}
+	}
 	#topbar {
 		position: fixed;
 		background-color: #CAF0F8;
