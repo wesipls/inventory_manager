@@ -91,4 +91,7 @@ tr:nth-child(odd) {
 tr:nth-child(even) {
 	background-color: white;
 	}
+button {
+	font-size: 8px;
+}
 </style>

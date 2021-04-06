@@ -3,11 +3,10 @@
 <template>
 	<div id="main">
 		<div id="topbar">
+		<h4 id="counter">Found {{ inventorylist.length }} devices</h4>
 		<input type="text"  id="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
 		<button type="button" @click="$refs.addentry.addNewForm();">New Entry</button>
-		<button type="button" @click="submitUpdates(); $refs.addentry.submitForm(); delayedUpdate(); $refs.addentry.resetFields();">Submit entries</button>
-		<button type="button">Archive entries</button>
-			<h4 id="counter">Search found {{ inventorylist.length }} devices</h4>
+		<button type="button" @click="submitUpdates(); $refs.addentry.submitForm(); delayedUpdate(); $refs.addentry.resetFields();">Submit entries</button>	
 			<div id="topspanner">
 				<span style="width:5%">ID</span>
 				<span style="width:10%">LOC</span>
@@ -108,12 +107,15 @@ import addentry from '../components/addentry.vue'
 		width: calc(100% - 240px);
 	}
 	#counter {
-		width: 20%;
+		width: 10%;
 		margin-top: 5px;
+		float: left;
+		margin-bottom: 0px;
+		padding-bottom: 0px;
 	}
 	#searchbox {
-		width: 40%;
-		margin-right: 200px;
+		width: 30%;
+		float: left;
 	}
 	#topspanner {
 		background-color: #48CAE4;
@@ -130,7 +132,7 @@ import addentry from '../components/addentry.vue'
 	#wrap {
 		background-color: #48CAE4;
 		width: 100%;
-		padding-top: 100px;
+		padding-top: 50px;
 	}
 	table {
 		width: 100%;
