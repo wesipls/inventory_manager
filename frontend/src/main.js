@@ -8,6 +8,7 @@ Vue.use(VueRouter);
 
 import Dashboard from './views/dashboard.vue';
 import Manager from './views/invmanager.vue';
+import Maintenance from './views/maintenance.vue';
 
 const router = new VueRouter({
 	mode: 'history',
@@ -15,6 +16,7 @@ const router = new VueRouter({
 	routes: [
 		{ path: '/', component: Dashboard },
 		{ path: '/inventory', component: Manager },
+		{ path: '/maintenance', component: Maintenance },
 	]
 });
 
