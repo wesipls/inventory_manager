@@ -42,3 +42,8 @@ Dashboard, quick statistics for current inventory
 Import tab, for importing device info from store pages  
 export tab, for exporting database to different formats, excel and db dump most important  
 Backups, maintenance tab, backup database to specified location  
+
+## Note to future self  
+fix php loop for async/await to work correctly  (POST Promise probably returned after first db entry in loop)
+Use setInterval polling for fetching updated inventory list  
+Stop worrying about refactoring the list itself, can be refactored later (after these ^ fixes)
