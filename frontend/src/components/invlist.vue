@@ -6,7 +6,7 @@
 		<h4 id="counter">Found {{ inventorylist.length }} devices</h4>
 		<input type="text"  id="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
 		<button type="button" @click="$refs.addentry.addNewForm();">New Entry</button>
-		<button type="button" @click="submitUpdates(); $refs.addentry.submitForm(); delayedUpdate();">Submit entries</button>	
+		<button type="button" @click="submitUpdates(); submitNewEntries();">Submit entries</button>	
 			<div id="topspanner">
 				<span style="width:5%">ID</span>
 				<span style="width:10%">LOC</span>
@@ -63,8 +63,8 @@ import addentry from '../components/addentry.vue'
 			};
 		},
 		methods: {
-			getInventorylist() {
-					axios.post("http://localhost:8100/read" , {
+			async getInventorylist() {
+					await axios.post("http://localhost:8100/read" , {
 					query:this.query
 				}).then((response) => {
 					if(response.data.length > 0)
@@ -80,8 +80,12 @@ import addentry from '../components/addentry.vue'
 					}
 					)
 			},
-			submitUpdates(){
-				axios.post("http://localhost:8100/update" , this.inventorylist);
+			async submitNewEntries() {
+				await this.$refs.addentry.submitForm();
+				await this.getInventorylist();
+			},
+			async submitUpdates(){
+				await axios.post("http://localhost:8100/update" , this.inventorylist);
 			},
 			delayedUpdate() {
 				setTimeout(() => {
@@ -107,7 +111,7 @@ import addentry from '../components/addentry.vue'
 		width: calc(100% - 240px);
 	}
 	#counter {
-		width: 10%;
+		width: 15%;
 		margin-top: 5px;
 		float: left;
 		margin-bottom: 0px;

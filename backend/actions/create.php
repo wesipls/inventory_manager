@@ -9,6 +9,8 @@ $sql = "INSERT INTO devices (device_location, device_name, device_model, device_
 $stmt = $connect->prepare($sql);
 $received_data = json_decode(file_get_contents("php://input") ?? $_POST,true);
 
+$connect->beginTransaction();
+
 for ($i=0; $i< count($received_data); $i++)
 {
 $location = $received_data[$i]["location"];
@@ -23,5 +25,8 @@ $status = $received_data[$i]["status"];
 
 $stmt->execute([$location, $name, $model, $manufacturer, $price, $dateofpurchase, $warrantydate, $info, $status]);	
 }
+
+$connect->commit();
+
 $connect = null;
 ?>

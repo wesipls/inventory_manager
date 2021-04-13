@@ -49,10 +49,10 @@ export default {
 		removeForm(index) {
 			vue.delete(this.forms, index);
 		},
-		submitForm(){
-			console.log(this.forms);
-			axios.post("http://localhost:8100/create" , this.forms);
+		async submitForm(){
+			await axios.post("http://localhost:8100/create" , this.forms);
 			Object.assign(this.$data, this.$options.data.call(this));
+
 		},
 	}
 };
