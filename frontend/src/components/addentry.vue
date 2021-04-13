@@ -52,9 +52,7 @@ export default {
 		submitForm(){
 			console.log(this.forms);
 			axios.post("http://localhost:8100/create" , this.forms);
-		},
-		resetFields () {
-            Object.assign(this.$data, this.$options.data.call(this));
+			Object.assign(this.$data, this.$options.data.call(this));
 		},
 	}
 };
