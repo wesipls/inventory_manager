@@ -6,7 +6,7 @@
 		<h4 id="counter">Found {{ inventorylist.length }} devices</h4>
 		<input type="text"  id="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
 		<button type="button" @click="$refs.addentry.addNewForm();">New Entry</button>
-		<button type="button" @click="submitUpdates(); $refs.addentry.submitForm(); delayedUpdate(); $refs.addentry.resetFields();">Submit entries</button>	
+		<button type="button" @click="submitUpdates(); $refs.addentry.submitForm(); delayedUpdate();">Submit entries</button>	
 			<div id="topspanner">
 				<span style="width:5%">ID</span>
 				<span style="width:10%">LOC</span>
