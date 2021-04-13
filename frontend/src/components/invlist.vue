@@ -87,12 +87,6 @@ import addentry from '../components/addentry.vue'
 			async submitUpdates(){
 				await axios.post("http://localhost:8100/update" , this.inventorylist);
 			},
-			delayedUpdate() {
-				setTimeout(() => {
-					axios.post("http://localhost:8100/read")
-					.then(response => (this.inventorylist = response.data))
-				}, 200)
-			},
 
 		},
 
