@@ -44,4 +44,4 @@ export tab, for exporting database to different formats, excel and db dump most 
 Backups, maintenance tab, backup database to specified location  
 
 ## Note to future self  
-Use setInterval polling for fetching updated inventory list  
+Refactor search to search from fetched json file instead of new database queries
