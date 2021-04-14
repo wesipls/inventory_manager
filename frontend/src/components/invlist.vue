@@ -53,7 +53,7 @@ import addentry from '../components/addentry.vue'
 		addentry,
 		},
 		created() {
-		this.$root.$refs.invlist = this;
+		this.loadList();
 		},
 		data() {
 			return {
@@ -80,6 +80,11 @@ import addentry from '../components/addentry.vue'
 					}
 					)
 			},
+			loadList() {
+				this.polling = setInterval(() => {
+					this.getInventorylist();
+				}, 10000)
+			},
 			async submitNewEntries() {
 				await this.$refs.addentry.submitForm();
 				await this.getInventorylist();
@@ -91,8 +96,11 @@ import addentry from '../components/addentry.vue'
 		},
 
 			beforeMount() {
-			this.getInventorylist()
+				this.getInventorylist();
 		},
+			beforeDestroy() {
+				clearInterval(this.polling);
+			}
 	}
 </script>
 <style scoped>
