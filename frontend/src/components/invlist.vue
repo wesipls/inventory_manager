@@ -53,7 +53,7 @@ import addentry from '../components/addentry.vue'
 		addentry,
 		},
 		created() {
-		this.loadList();
+//		this.loadList();
 		},
 		data() {
 			return {
@@ -99,7 +99,7 @@ import addentry from '../components/addentry.vue'
 				this.getInventorylist();
 		},
 			beforeDestroy() {
-				clearInterval(this.polling);
+//				clearInterval(this.polling);
 			}
 	}
 </script>
