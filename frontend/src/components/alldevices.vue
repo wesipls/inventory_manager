@@ -1,9 +1,11 @@
 <script>
-import { Doughnut } from 'vue-chartjs'
+import { Doughnut } from 'vue-chartjs';
+import axios from 'axios';
 export default {
 	extends: Doughnut,
 		data () {
 			return {
+				chartStats: [],
 				chartData: {
 					labels: ["OK", "Broken", "Not Available"],
 					datasets: [{
@@ -32,7 +34,18 @@ export default {
 				},
 				mounted () {
 					this.renderChart(this.chartData, this.options)
-				}
+				},
+				methods: {
+					async getStats() {
+						await axios.post("http://localhost:8100/read")
+						.then(response => chartStats = response.data);
+
+					},
+						
+				},
+				computed: {
+					
+				},
 }
 </script>
 

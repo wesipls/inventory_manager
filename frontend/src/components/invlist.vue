@@ -1,12 +1,12 @@
 //invlist.vue
-
 <template>
 	<div id="main">
 		<div id="topbar">
 		<h4 id="counter">Found {{ inventorylist.length }} devices</h4>
 		<input type="text"  id="searchbox" placeholder="Search Inventory" v-model="query" @keyup="getInventorylist()" />
 		<button type="button" @click="$refs.addentry.addNewForm();">New Entry</button>
-		<button type="button" @click="submitUpdates(); submitNewEntries();">Submit entries</button>	
+		<button type="button" @click="submitUpdates(); submitNewEntries(); loadList();">Submit entries</button>	
+			<p style="float: left; margin-top: 0px;">{{ notification }}</p>
 			<div id="topspanner">
 				<span style="width:5%">ID</span>
 				<span style="width:10%">LOC</span>
@@ -27,15 +27,15 @@
 			<table>
 				<tr v-for="data in inventorylist" :key=data.id>
 					<td style="width:5%"><input class="tbl" type="text" v-model="data.device_id"></td>
-					<td style="width:10%"><input class="tbl" type="text" v-model="data.device_location"></td>
-					<td style="width:10%"><input class="tbl" type="text" v-model="data.device_name"></td>
-					<td style="width:10%"><input class="tbl" type="text" v-model="data.device_model"></td>
-					<td style="width:10%"><input class="tbl" type="text" v-model="data.device_manufacturer"></td>
-					<td style="width:10%"><input class="tbl" type="text" v-model="data.device_price"></td>
-					<td style="width:10%"><input class="tbl" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" v-model="data.device_purchase_date"></td>
-					<td style="width:10%"><input class="tbl" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" v-model="data.device_warranty_date"></td>
-					<td style="width:20%"><input class="tbl" type="text" v-model="data.device_info"></td>
-					<td style="width:5%"><input class="tbl" type="text" v-model="data.device_status"></td>
+					<td style="width:10%"><input class="tbl" type="text" v-model="data.device_location" v-on:input=stopPolling();></td>
+					<td style="width:10%"><input class="tbl" type="text" v-model="data.device_name" v-on:input="stopPolling();"></td>
+					<td style="width:10%"><input class="tbl" type="text" v-model="data.device_model" v-on:input="stopPolling();"></td>
+					<td style="width:10%"><input class="tbl" type="text" v-model="data.device_manufacturer" v-on:input="stopPolling();"></td>
+					<td style="width:10%"><input class="tbl" type="text" v-model="data.device_price" v-on:input="stopPolling();"></td>
+					<td style="width:10%"><input class="tbl" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" v-model="data.device_purchase_date" v-on:input="stopPolling();"></td>
+					<td style="width:10%"><input class="tbl" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" v-model="data.device_warranty_date" v-on:input="stopPolling();"></td>
+					<td style="width:20%"><input class="tbl" type="text" v-model="data.device_info" v-on:input="stopPolling;"></td>
+					<td style="width:5%"><input class="tbl" type="text" v-model="data.device_status" v-on:input="stopPolling();"></td>
 				</tr>
 			</table>
 			</form>
@@ -53,13 +53,14 @@ import addentry from '../components/addentry.vue'
 		addentry,
 		},
 		created() {
-//		this.loadList();
+		this.loadList();
 		},
 		data() {
 			return {
 				inventorylist: [],
 				query:'',
 				nodata:false,
+				notification:'',
 			};
 		},
 		methods: {
@@ -84,6 +85,7 @@ import addentry from '../components/addentry.vue'
 				this.polling = setInterval(() => {
 					this.getInventorylist();
 				}, 10000)
+				this.notification = '';
 			},
 			async submitNewEntries() {
 				await this.$refs.addentry.submitForm();
@@ -92,6 +94,10 @@ import addentry from '../components/addentry.vue'
 			async submitUpdates(){
 				await axios.post("http://localhost:8100/update" , this.inventorylist);
 			},
+			stopPolling(){
+				clearInterval(this.polling);
+				this.notification = "Polling stopped";
+			},
 
 		},
 
@@ -99,7 +105,7 @@ import addentry from '../components/addentry.vue'
 				this.getInventorylist();
 		},
 			beforeDestroy() {
-//				clearInterval(this.polling);
+				this.stopPolling();
 			}
 	}
 </script>
